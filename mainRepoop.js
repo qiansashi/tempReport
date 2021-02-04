@@ -77,8 +77,8 @@ function casLogin(casArray, resData) {
             port: 443,
             method: 'POST',
             headers: url.casHeaders,
-            body:form
-        }    
+            body: form
+        }
         //request模块文档地址：https://github.com/request/request
         // request.post({
         //     uri: url.casRequestUrl,
@@ -86,12 +86,12 @@ function casLogin(casArray, resData) {
         // }, function (err, httpResponse, body) {
         //     console.log('post data: ' + body)
         // }).form(formData)
-        request(opt,(err, res, body)=>{
-            if(err){
+        request(opt, (err, res, body) => {
+            if (err) {
                 console.log(err)
             }
             console.log('post data: ' + body)
-            console.log('coooookies:    '+res.headers['set-cookie'])
+            console.log('coooookies:    ' + res.headers['set-cookie'])
         })
         //https.ClientRequest类无法请求待修改
         // var casLoginRequest = https.request(option, res => {
@@ -109,6 +109,9 @@ function casLogin(casArray, resData) {
         //     console.log('post end')
         // })
     })
+}
+function workflowLogin() {
+
 }
 casRquest.then((res) => {
     res.on('data', (chunk) => {
