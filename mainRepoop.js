@@ -89,9 +89,20 @@ function casLogin(casArray, resData) {
         request(opt, (err, res, body) => {
             if (err) {
                 console.log(err)
+            } else {
+                const dom = new JSDOM(body)
+                const { window } = (dom).window
+                const { document } = window
+                global.window = window
+                global.document = document
+                const $ = global.jQuery = require('jQuery')
+                if ($('h2').text() == '成功' || $('h2').text() == '登录成功') {
+                    console.log('post data: ' + body)
+                    console.log(res.headers['set-cookie'])
+                }else{
+                    console.log('h2 testttttt'+$('h2').text())
+                }
             }
-            console.log('post data: ' + body)
-            console.log('coooookies:    ' + res.headers['set-cookie'])
         })
         //https.ClientRequest类无法请求待修改
         // var casLoginRequest = https.request(option, res => {
